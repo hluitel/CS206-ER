@@ -145,11 +145,11 @@ function getDataG($field) {
                 
                  <p>
 
-                    <label class ="required text-field" for="numShoot">Shooting</label>
+                    <label class ="required text-field" for="numShooting">Shooting</label>
                     <input autofocus
                           id="txtRating"
                            maxlength="45"
-                           name="numShoot"
+                           name="numShooting"
                            onfocus="this.select()"
                            placeholder="Shooting"
                            tabindex="100"
