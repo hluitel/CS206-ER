@@ -7,7 +7,8 @@ include 'top.php';
  */
 
 
-function getData($field) {
+
+function getPostData($field) {
     if(!isset($_POST[$field])) {
         $data = "";
         
@@ -21,7 +22,7 @@ function getData($field) {
     
 }
 
-function getDataG($field) {
+function getGetData($field) {
     if(!isset($_GET[$field])) {
         $data = "";
         
@@ -35,14 +36,106 @@ function getDataG($field) {
       
 }
 
+//general
+$dataIsGood = true;
+$firstName = "";
+$lastName = "";
+$numRating = "";
+
+//tblPlayers 
+
+
+#if(isset($_POST['btnSubmit'])) {
+
+if(isset($_POST['Submit'])) {
+
+  
+if($dataIsGood){
+    
+    $userLogin = 1;
+    $firstName = getPostData("txtFirstName");
+    $lastName = getPostData("txtLastName");
+    $numRating = getPostData("numRating");
+    
+      
+    if($firstName == "" || $lastName == "" || $numRating == "") {
+        print("<p>Please Enter the following info</p>");
+        $dataIsGood = false;
+    }
+
+
+    //tblAttributues
+    
+
+    $Pace = getPostData("numPace");
+    $Skills = getPostData("numSkills");
+    $Shooting = getPostData("numShooting");
+    $Passing = getPostData("numPassing");
+    $Heading = getPostData("numHeading");
+    $Strength = getPostData("numStrength");
+    
+    $data = array($userLogin,$firstName,$lastName,$numRating);
+    
+    
+    //test
+
+    /*
+    $tblPlayerQuery = "INSERT INTO tblPlayers(pfkUserID, fldFirstName, fldLastName, fldRating) values(?,?,?,?)";
+    $thisDatabaseWriter->insert($tblPlayerQuery, $data);
+`   */
+    
+    
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    
+    
+    
+    
+    $tblPlayerQuery = "INSERT INTO tblPlayers(pfkUserID, fldFirstName, fldLastName, fldRating) values(?,?,?,?)";
+ 
+    $thisDatabaseReader->testSecurityQuery($tblPlayerQuery,0);
+    if($thisDatabaseWriter->querySecurityOK($tblPlayerQuery,0)){
+            $readyTOGO = $thisDatabaseWriter->sanitizeQuery($tblPlayerQuery);
+            $thisDatabaseWriter->insert($readyTOGO, $data);
+            
+
+        }
+        
+     else{
+          print("<p>There was error Inserting the values</p>");
+      }
+    
+    $lastInsert = $thisDatabaseWriter->lastInsert();
+    
+    print($lastInsert);
+    
+    $tblAtrributeQuery = "INSERT INTO tblAtrributes (pfkPlayerID, fldPace, fldSkills, fldShooting, fldPassing, fldHeading, fldStrength) values(?,?,?,?,?,?,?)";
+    //$tblAtrributeQuery = "INSERT INTO tblAtrributes (pfkPlayerID, fldPace, fldSkills, fldShooting, fldPassing, fldHeading, fldStrength) where pfkPlayerID = ?, fldPace = ?, fldSkills = ?, fldShooting = ?, fldPassing = ?, fldHeading = ?, fldStrength = ? ";
+    //$thisDatabaseReader->testSecurityQuery($tblAtrributeQuery);
+    $dataAtrribute = array($lastInsert, $Pace, $Skills,$Shooting,$Passing, $Heading,$Strength);
+    
+     if($thisDatabaseWriter->querySecurityOK($tblAtrributeQuery,0)){
+            $dataReady = $thisDatabaseWriter->sanitizeQuery($tblAtrributeQuery);
+            $thisDatabaseWriter->insert($dataReady, $dataAtrribute);
+            
+
+            
+            
+        }
+        
+      else{
+          print("<p>There was error Inserting the values</p>");
+      }
+        
+}
+
+}
+      
 ?>
 
 
-
-
-<form method='post' action='save.php' id="playerBuilder">
+<form method='POST' action=''>
     
-            <fieldset class ="Name">
                 <legend>Enter Your Player Info</legend>
 
                 <p>
@@ -56,6 +149,7 @@ function getDataG($field) {
                            tabindex="100"
                            type="text"
                            value=""
+                           required
                            >
                 </p>
 
@@ -71,6 +165,7 @@ function getDataG($field) {
                            tabindex="100"
                            type="text"
                            value=""
+                           required
                            >
                 </p>
                 
@@ -87,6 +182,8 @@ function getDataG($field) {
                            tabindex="100"
                            type="number"
                            value=""
+                           min="1"
+                           required
                            >
                 </p>
                 
@@ -95,7 +192,7 @@ function getDataG($field) {
     <fieldset class ="listbox">
     <label for="position">Choose a Position</label>
 
-<select name="position" id="position">
+    <select name="position" id="position" required>
   <option value="GK">Center Back</option>
   <option value="CB">Center Back</option>
   <option value="LB">Left Back</option>
@@ -123,6 +220,8 @@ function getDataG($field) {
                            tabindex="100"
                            type="number"
                            value=""
+                           min="1"
+                           required
                            >
                 </p>
                 
@@ -139,6 +238,8 @@ function getDataG($field) {
                            tabindex="100"
                            type="number"
                            value=""
+                           min="1"
+                           required
                            >
                 </p>
                 
@@ -155,6 +256,10 @@ function getDataG($field) {
                            tabindex="100"
                            type="number"
                            value=""
+                           min="1"
+
+                           required
+                           
                            >
                 </p>
                 
@@ -171,6 +276,8 @@ function getDataG($field) {
                            tabindex="100"
                            type="number"
                            value=""
+                           min="1"
+                           required
                            >
                 </p>
                 
@@ -186,6 +293,8 @@ function getDataG($field) {
                            tabindex="100"
                            type="number"
                            value=""
+                           min ="1"
+                           required
                            >
                 </p>
                 
@@ -202,16 +311,15 @@ function getDataG($field) {
                            tabindex="100"
                            type="number"
                            value=""
+                           min="1"
+                           required
                            >
                 </p>
                 
   
 
-     </fieldset>
-    <fieldset class ="submit">
-                <legend></legend>
-                <input class ="button" id="btnSubmit" name ="btnSubmit" tabindex="900" type="submit" value="Submit">
-            </fieldset>
+          <input type="submit" name = "Submit"/>
+
 </form>
 
 </body>
