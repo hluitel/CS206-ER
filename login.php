@@ -32,38 +32,71 @@ function getGetData($field) {
 }
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
+    session_start();
 
     $dataIsGood = true;
     
     $userName = getPostData("username");
     $passWord = getPostData("password");
+        
     
-    print($userName);
-    print($passWord);
+    
+    
     
     if($dataIsGood) {
-        $checkUser = 'select fldUserName, fldPassword FROM tblUsers where fldUserName = ? and fldPassword = ?';
-        $providedInfo = [$userName, $passWord];
-        #$thisDatabaseReader->testSecurityQuery($checkUser,1,1);
+        //$checkUser = 'select from tblUsers(fldUserName,fldPassword) where fldUsername = ? and fldPassword = ?';
+        $checkUser = 'select * from tblUsers where fldUsername = ?';
 
-        if($thisDatabaseReader->querySecurityOK($checkUser,1,1)){
-            $checkUser = $thisDatabaseReader->sanitizeQuery($checkUser);
-            $validateUser = $thisDatabaseReader->select($checkUser, $providedInfo);
+
+        $providedInfo = [$userName];
+        #$thisDatabaseReader->testSecurityQuery($checkUser);
+
+        if($thisDatabaseReader->querySecurityOK($checkUser)){
+            $ready = $thisDatabaseReader->sanitizeQuery($checkUser);
+            
+            $validateUser = $thisDatabaseReader->select($ready, $providedInfo);
+            
+            #print_r($thisDatabaseReader->select($ready, $providedInfo));
+            #print(sizeof($validateUser));
+            
+            
+            
+            
+        $test = $validateUser[0]['pmkUserID'];
+        try{
+            if(password_verify($passWord, $validateUser[0]['fldPassword'])) {
+                $_SESSION["username"] = $userName;
+                
+                $_SESSION["key"] = $test;
+                    
+                //print($_SESSION["username"]);
+                header("Location: index.php");
+                die;    
+            }
+            else{
+                print("<p>Incorrect Passoword</p>");
+            }
+
+
+            
+           
+        } catch (Exception $ex) {
+             print("<p>Incorrect Passoword</p>");
+            
+
+        }
+                        
+            
+            
+            
             
         }
         
         
        
-        print_r($providedInfo[0], $providedInfo[1]);
         
         //if($validateUser[0] == $providedInfo[0] && $validateUser[1] == $providedInfo[1]) {
-        if(sizeof($validateUser) == 1) {
-            print("It worked");
-            
-        }
-        else{
-            print("Nope It didnot");
-        }
+      
     }
           
     
@@ -81,6 +114,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             <input type="text" name="username" placeholder="Enter the User Name" required/>	
 			<p class="form-input">
                             <input type="password" name="password" placeholder="password" required/>
+                            
+                        <h4>Don't Have An Account?</h4><a href="createAccount.php">Create Account</a>
+                            
+                            
+                            
 			<input type="submit" type="submit" value="LOGIN" class="btn-login"/>
                 </form>
 </body>

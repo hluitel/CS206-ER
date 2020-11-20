@@ -1,6 +1,7 @@
 <?php
 include 'top.php';
 
+
 ?>
 
 
@@ -8,8 +9,20 @@ include 'top.php';
 <body id ="index">
     
     <p>Hello</p>
+    
+    
+
    
   <?php   
+  
+  
+  
+session_start();
+
+print($_SESSION['username']);
+print($_SESSION['key']);
+
+
   /**      
 
 

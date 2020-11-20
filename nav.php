@@ -33,16 +33,17 @@
         if (PATH_PARTS['filename'] == 'playerPack') {
             print ' class="activePage" ';
         }
-        print '><a href="playerPack.php">playerPack</a></li>';
+        print '><a href="playerPack.php">Your Players</a></li>';
         
         print '<li ';
         
+        
          print '<li ';
         
-        if (PATH_PARTS['filename'] == 'PlayersList') {
+        if (PATH_PARTS['filename'] == 'playersCatalog') {
             print ' class="activePage" ';
         }
-        print '><a href="playersCatalog.php">playerPack</a></li>';
+        print '><a href="playersCatalog.php">Players Catalog</a></li>';
         
         print '<li ';
         

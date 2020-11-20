@@ -1,11 +1,13 @@
 <?php
 include 'top.php';
+
+session_start();
+
 /* 
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 
 
 function getPostData($field) {
@@ -52,7 +54,9 @@ if(isset($_POST['Submit'])) {
   
 if($dataIsGood){
     
-    $userLogin = 1;
+    $id = $_SESSION['key'];
+    
+    $userLogin = $id;
     $firstName = getPostData("txtFirstName");
     $lastName = getPostData("txtLastName");
     $numRating = getPostData("numRating");
@@ -130,6 +134,8 @@ if($dataIsGood){
 }
 
 }
+
+
       
 ?>
 
