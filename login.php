@@ -1,35 +1,6 @@
 <?php
 include 'top.php';
- 
-function getPostData($field) {
-    if(!isset($_POST[$field])) {
-        $data = "";
-        
-    }else {
-        $data = trim($_POST[$field]);
-        $data = htmlspecialchars($data);
-       
-    }
-    
-    return $data;
-    
-    
-}
 
-function getGetData($field) {
-    if(!isset($_GET[$field])) {
-        $data = "";
-        
-    }else {
-        $data = trim($_GET[$field]);
-        $data = htmlspecialchars($data);
-       
-    }
-    
-    return $data;
-    
-    
-}
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     session_start();
@@ -68,6 +39,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 $_SESSION["username"] = $userName;
                 
                 $_SESSION["key"] = $test;
+                
+                $_SESSION["loggedin"] = true;
+
                     
                 //print($_SESSION["username"]);
                 header("Location: index.php");

@@ -6,38 +6,7 @@
  * and open the template in the editor.
  */
 include 'top.php';
-
-
- 
-function getPostData($field) {
-    if(!isset($_POST[$field])) {
-        $data = "";
-        
-    }else {
-        $data = trim($_POST[$field]);
-        $data = htmlspecialchars($data);
-       
-    }
-    
-    return $data;
-    
-    
-}
-
-function getGetData($field) {
-    if(!isset($_GET[$field])) {
-        $data = "";
-        
-    }else {
-        $data = trim($_GET[$field]);
-        $data = htmlspecialchars($data);
-       
-    }
-    
-    return $data;
-    
-    
-}
+include 'functions.php';
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
@@ -47,14 +16,41 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $passWord = getPostData("password");
     $email = getPostData("email");
     
+    if($userName == "") {
+        print("<p class='mistake'> Please Enter your username");
+        $dataIsGood = false;
+    }
+    
+    if($passWord == "") {
+        print("<p class='mistake'> Please Enter your password");
+        $dataIsGood = false;
+    }
+    $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+    
+    if($email == "") {
+       print("<p class='mistake'> Please Enter your Email");
+       $dataIsGood = false;
+
+        
+    }
+    else if(!filter_var($email, FILTER_SANITIZE_EMAIL)){
+        
+               print("<p class='mistake'> Incorrect Email Address");
+               $dataIsGood = false;
+
+        
+    }
+    
+    
+    
     $passwordHashed = password_hash($passWord,PASSWORD_DEFAULT);
    
     
         
     
     
-    print($userName);
-    print($passwordHashed);
+    //print($userName);
+    //print($passwordHashed);
     
     if($dataIsGood) {
         $checkUser = 'insert into tblUsers(fldEmail,fldUserName,fldPassword) values(?,?,?)';
@@ -69,6 +65,54 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         
         if($validateUser){
                      echo "<p>Your account has been created.</p>",
+                             
+                             
+            $to = $email;
+            $subject = 'Created An Account at Fifa';
+            $cc = "";
+            $bcc = "";
+            $message = "";
+            
+            $from = "Website Admin <hluitel@uvm.edu>";
+            
+            $headers = "From: " . $from . "\r\n";
+            $headers .= "Reply-To: ". $from . "\r\n";
+            //$headers .= "CC: susan@example.com\r\n";
+            $headers .= "MIME-Version: 1.0\r\n";
+            $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+            
+            
+            $message = '<html><body>';
+            $message .= '<h1 style="color:darkgreen;">Hello</h1>';
+            $message .= '<p style="color:080;font-size:18px;">You successfully created an account</p>';
+            
+            //seeif this passes validation
+            $message .= '<p style="color:#080;font-size:18px;">Your Username is ' . $userName . '</p>';
+            
+            $message .= '<p>For Inquiry, please contact us at hluitel@uvm.edu</h4>';
+
+            
+            $message .= '<h4>Thank You for Using Our Service</h4>';
+
+            
+            $message .= '</body></html>';
+            
+
+            
+            try{
+                mail($to,$subject,$message, $headers);
+
+                
+            } catch (Exception $ex) {
+                print("<p>There was Error Sending the Confirmation Email");
+
+            }
+            
+            
+            
+
+            
+            
              "<p><a href='login.php'>Login</a></p></html>";
                      
                die;
@@ -76,19 +120,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
         
         else{
-            print("<p>Please Choose a different Username." . $userName . " is taken</p>");
+            print("<p>Please Choose a different Username " . $userName . " is taken</p>");
             
         }
         
     }
           
-    
-    
-    
-    
-
-  
-
 }
 ?>
 

@@ -26,6 +26,7 @@ $playerInfo = "";
 
 if(isset($_POST['Submit'])) {
     print("<p>After Testing</p>");
+    
 
   
     
@@ -33,10 +34,12 @@ if(isset($_POST['Submit'])) {
         $Name = getPostData("txtSortName");
         $Country = getPostData("txtSortNationality");
         
+        
+        
         print($Name);
         print($Country);
         
-        if($Name == "") {
+        if($Name == "" && $Country != "") {
             $tblQuery = 'select * from tblFifaPlayers where fldNationality = ?';
             
             if($thisDatabaseReader->querySecurityOK($tblQuery)){
@@ -52,7 +55,7 @@ if(isset($_POST['Submit'])) {
             
         }
         
-        elseif($Country == "") {
+        elseif($Country == "" && $Name != "") {
             $tblQuery = 'select * from tblFifaPlayers where fldName = ?';
             if($thisDatabaseReader->querySecurityOK($tblQuery)){
             $readyTOGO = $thisDatabaseReader->sanitizeQuery($tblQuery);
@@ -65,10 +68,12 @@ if(isset($_POST['Submit'])) {
             
         }
         
+        
+        
         }
         
         elseif($Name != "" && $Country != ""){
-            $tblQuery = 'select * from tblFifaPlayers where fldName=? , fldNationality = ?';
+            $tblQuery = 'select * from tblFifaPlayers where fldName=? and fldNationality=?';
             $data = array($Name, $Country);
             if($thisDatabaseReader->querySecurityOK($tblQuery,1,1)){
             $readyTOGO = $thisDatabaseReader->sanitizeQuery($tblQuery);
@@ -80,11 +85,15 @@ if(isset($_POST['Submit'])) {
             
             
         }
+        
         }
+        
+        
         else{
-            print("<p>Please Enter atleast one info</p>");
+            print("<p class = 'mistake'>Please Enter atleast one info</p>");
         }
      
+        
         
     }
     
@@ -96,11 +105,17 @@ if(isset($_POST['Submit'])) {
                 <th>Nationality</th>
                 <th>Position</th>
                 <th>Ranking</th>
-                <th>Age</th>               
+                <th>Age</th>  
+                <th>Club</th>               
+
     </tr>
     
     
     <?php
+    
+    if(is_array($playerInfo)) {
+        
+    
     
     foreach($playerInfo as $player) {
          print '<tr>';
@@ -109,7 +124,11 @@ if(isset($_POST['Submit'])) {
             print '<td>' . $player['fldPosition'] . '</td>';
             print '<td>' . $player['fldRanking'] . '</td>';
             print '<td>' . $player['fldAge'] . '</td>';
+            print '<td>' . $player['fldClub'] . '</td>';
+
            print '</tr>';
+    }
+    
     }
     
 }
@@ -123,9 +142,9 @@ if(isset($_POST['Submit'])) {
 
    		<form method='POST' action=''>
 
-                            <input type="text" name="txtSortName" placeholder="Name" />	
+                            <input type="text" name="txtSortName" placeholder="Name" value = "<?php print $Name; ?>"/>	
 			<p class="form-input">
-                            <input type="text" name="txtSortNationality" placeholder="nationality" />
+                            <input type="text" name="txtSortNationality" placeholder="nationality" value = "<?php print $Country; ?>"/>
                             
                             <input type="submit" name = "Submit"/>
 

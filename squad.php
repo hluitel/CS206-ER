@@ -9,34 +9,11 @@ session_start();
  * and open the template in the editor.
  */
 
-
-function getPostData($field) {
-    if(!isset($_POST[$field])) {
-        $data = "";
-        
-    }else {
-        $data = trim($_POST[$field]);
-        $data = htmlspecialchars($data);
-       
-    }
-    
-    return $data; 
-    
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
+    exit;
 }
 
-function getGetData($field) {
-    if(!isset($_GET[$field])) {
-        $data = "";
-        
-    }else {
-        $data = trim($_GET[$field]);
-        $data = htmlspecialchars($data);
-       
-    }
-    
-    return $data;
-      
-}
 
 //general
 $dataIsGood = true;
