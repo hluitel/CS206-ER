@@ -1,6 +1,11 @@
 <?php
 include 'top.php';
+include 'functions.php';
 
+
+
+$userName = "";
+$passWord = "";
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     session_start();
@@ -49,6 +54,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             }
             else{
                 print("<p>Incorrect Passoword</p>");
+                $userData = $userName;
+                $attempt = 1;
             }
 
 
@@ -85,7 +92,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 		<form method='POST' action=''>
 			<p class="form-input">
-                            <input type="text" name="username" placeholder="Enter the User Name" required/>	
+                            <input type="text" name="username" value = "<?php print($userName); ?>" placeholder="Enter the User Name" required/>	
 			<p class="form-input">
                             <input type="password" name="password" placeholder="password" required/>
                             

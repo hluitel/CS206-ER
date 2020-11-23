@@ -7,6 +7,8 @@
  */
 include 'top.php';
 include 'functions.php';
+session_start();
+
 
 /**
 $tblQuery = 'select * from tblFifaPlayers';
@@ -33,12 +35,21 @@ if(isset($_POST['Submit'])) {
     if($dataIsGood){
         $Name = getPostData("txtSortName");
         $Country = getPostData("txtSortNationality");
+        $displayPlayer = getPostData("displayPlayer");
+        
+        if($displayPlayer != 'fantasy' || $displayPlayer != 'global'){
+            print '<p class = "mistake"> Please Select Atleast One Option for Displaying Players </p>';
+            $dataIsGood = false;
+        }
         
         
         
-        print($Name);
-        print($Country);
+        //print($Name);
+        //print($Country);
         
+        
+    if($displayPlayer == 'global')
+    {
         if($Name == "" && $Country != "") {
             $tblQuery = 'select * from tblFifaPlayers where fldNationality = ?';
             
@@ -90,8 +101,30 @@ if(isset($_POST['Submit'])) {
         
         
         else{
-            print("<p class = 'mistake'>Please Enter atleast one info</p>");
+            print("<p class = 'mistake'>Please Enter Atleast one info</p>");
         }
+        
+    } else if($displayPlayer == "fantasy"){
+        $tblQuery = 'select * from tblPlayers where pfkUserID = ?';
+        $arr = $_SESSION['key'];
+
+         if($thisDatabaseReader->querySecurityOK($tblQuery)){
+            $readyTOGO = $thisDatabaseReader->sanitizeQuery($tblQuery);
+            $playerInfo = $thisDatabaseReader->select($readyTOGO, array($arr));
+            
+            if(sizeof($playerInfo) == 0) {
+                print("<p>You Got No Players in Your Fantasy Team");
+            }
+   
+        
+         }
+
+        
+        
+        
+        
+        
+    }
      
         
         
@@ -141,11 +174,23 @@ if(isset($_POST['Submit'])) {
 
 
    		<form method='POST' action=''>
+                     <fieldset>
+                            <legend>Display Which Players: Your Fantasy Team Players or Global Players</legend>
+                        <p class="radio">
+                            <input type="radio" id="fantasy" name="displayPlayer" value="fantasy">
+                            <label for="fantasy">Your Fantasy Team</label>
+                            <input type="radio" id="global" name="displayPlayer" value="global">
+                            <label for="global">Global Players</label>
+                            
+                        </p>  
+                        
+                        </fieldset>
 
                             <input type="text" name="txtSortName" placeholder="Name" value = "<?php print $Name; ?>"/>	
 			<p class="form-input">
                             <input type="text" name="txtSortNationality" placeholder="nationality" value = "<?php print $Country; ?>"/>
-                            
+                           
+                       
                             <input type="submit" name = "Submit"/>
 
  </form>

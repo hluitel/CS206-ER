@@ -1,5 +1,6 @@
 <?php
 include 'top.php';
+include 'functions.php';
 
 session_start();
 
@@ -45,6 +46,31 @@ if($dataIsGood){
     }
 
 
+    //position
+    $position = getPostData("position");
+    $positionArray = array("GK", "RB", "LB", "CB", "CM", "LW", "RW", "ST");
+    $count = 0;
+    
+    
+    if($position == ""){
+        print '<p class = "mistake"> You have to Choose The Position</p>';
+        $dataIsGood = false;
+
+    }
+    
+    foreach($positionArray as $possition){
+        if ($possition == $position){
+            $count = $count + 1;
+        }
+    }
+    
+    if($count < 0 || $count > 1) {
+        print '<p class = "mistake"> You have to Choose The Position</p>';
+        $dataIsGood = false;
+        
+    }
+    
+   
     //tblAttributues
     
 
@@ -54,6 +80,25 @@ if($dataIsGood){
     $Passing = getPostData("numPassing");
     $Heading = getPostData("numHeading");
     $Strength = getPostData("numStrength");
+    
+    $processingArray = array($Pace,$Skills,$Shooting,$Passing, $Heading, $Strength);
+    
+    
+    
+    foreach($processingArray as $pro) {
+         if($pro == "") {
+        print '<p class = "mistake"> Please Insert The Value for ". $pro . "</p>';
+        
+        $dataIsGood = false;
+    }
+    else if($pro < 0) {
+        print '<p class = "mistake"> Values has to be greater than zero</p>'; 
+        $dataIsGood = false;
+    }
+        
+    }
+    
+   
     
     $data = array($userLogin,$firstName,$lastName,$numRating);
     
@@ -99,7 +144,7 @@ if($dataIsGood){
             $dataReady = $thisDatabaseWriter->sanitizeQuery($tblAtrributeQuery);
             $thisDatabaseWriter->insert($dataReady, $dataAtrribute);
             
-
+            print("<p>Congratulations, You suceesfully Created a Player</p>");
             
             
         }
@@ -107,6 +152,8 @@ if($dataIsGood){
       else{
           print("<p>There was error Inserting the values</p>");
       }
+      
+      
         
 }
 
@@ -131,7 +178,7 @@ if($dataIsGood){
                            placeholder="FirstName"
                            tabindex="100"
                            type="text"
-                           value=""
+                           value="<?php print $firstName; ?>"
                            required
                            >
                 </p>
@@ -147,7 +194,7 @@ if($dataIsGood){
                            placeholder="LastName"
                            tabindex="100"
                            type="text"
-                           value=""
+                           value="<?php print $lastName; ?>"
                            required
                            >
                 </p>
@@ -164,7 +211,7 @@ if($dataIsGood){
                            placeholder="Rating"
                            tabindex="100"
                            type="number"
-                           value=""
+                           value="<?php print $numRating; ?>"
                            min="1"
                            required
                            >
@@ -191,6 +238,8 @@ if($dataIsGood){
                 
                 
 <!-- Skills Section -->
+                <legend>Enter Your Player Attributes Info</legend>
+
                  <p>
 
                     <label class ="required text-field" for="numPace">Pace</label>
@@ -202,7 +251,7 @@ if($dataIsGood){
                            placeholder="Pace"
                            tabindex="100"
                            type="number"
-                           value=""
+                           value="<?php print $Pace; ?>"
                            min="1"
                            required
                            >
@@ -220,7 +269,7 @@ if($dataIsGood){
                            placeholder="Rating"
                            tabindex="100"
                            type="number"
-                           value=""
+                           value="<?php print $Skills; ?>"
                            min="1"
                            required
                            >
@@ -238,7 +287,7 @@ if($dataIsGood){
                            placeholder="Shooting"
                            tabindex="100"
                            type="number"
-                           value=""
+                           value="<?php print $Shooting; ?>"
                            min="1"
 
                            required
@@ -258,7 +307,7 @@ if($dataIsGood){
                            placeholder="Passing"
                            tabindex="100"
                            type="number"
-                           value=""
+                           value="<?php print $Passing; ?>"
                            min="1"
                            required
                            >
@@ -275,7 +324,7 @@ if($dataIsGood){
                            placeholder="Heading"
                            tabindex="100"
                            type="number"
-                           value=""
+                           value="<?php print $Heading; ?>"
                            min ="1"
                            required
                            >
@@ -293,7 +342,7 @@ if($dataIsGood){
                            placeholder="Strength"
                            tabindex="100"
                            type="number"
-                           value=""
+                           value="<?php print $Strength; ?>"
                            min="1"
                            required
                            >
