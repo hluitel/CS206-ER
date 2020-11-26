@@ -5,7 +5,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-include 'top.php';
+   print PHP_EOL . '<!--include Libraries-->' . PHP_EOL;  
+     print '<!-- begin including libraries -->';     
+        include 'lib/constants.php';
+        include LIB_PATH . '/Connect-With-Database.php';
+        print '<!-- libraries complete-->';
+
+    
+
 include 'functions.php';
 
 
@@ -68,9 +75,32 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             
         }
         
+        $idKnow = $thisDatabaseWriter->lastInsert();
+        
         if($validateUser){
-                     echo "<p>Your account has been created.</p>",
-                             
+                     echo "<p>Your account has been created.</p>";
+                
+            $check = 'select * from tblUsers where pmkUserId = ?';
+            $checkTwo = 'insert into tblUserRewards(pfkUserID,fldPoints) values(?,?)';
+            $points = 100;
+            $arr = array($idKnow,$points);
+                     
+            if($thisDatabaseWriter->querySecurityOK($check)){
+            $checkUser = $thisDatabaseWriter->sanitizeQuery($check);
+            $validateUser = $thisDatabaseWriter->select($check, array($idKnow));
+            
+            
+        }
+                      
+            if($thisDatabaseWriter->querySecurityOK($checkTwo,0)){
+            $checkUser = $thisDatabaseWriter->sanitizeQuery($checkTwo);
+            $validateUser = $thisDatabaseWriter->insert($checkTwo,$arr);
+
+        }
+        
+            
+            
+            
                              
             $to = $email;
             $subject = 'Created An Account at Fifa';
@@ -118,9 +148,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
             
             
-             "<p><a href='login.php'>Login</a></p></html>";
-                     
-               die;
+              header("Location: index.php");
+              die; 
             
         }
         
@@ -134,12 +163,27 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 }
 ?>
 
-<form method='POST' action='createAccount.php'>
+<!DOCTYPE html>
+<html lang="en">
+    <head>  
+        <title>A New View PhotoGraphy</title>
+
+        <meta charset="utf-8">
+        <meta name="author" content="Hari Luitel">
+        <meta name="description" content="wonderful pictures, gallary, nature,burlington pictures, vermont, a new view, shutter, cool pictures,">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./custom.css" type="text/css" media="screen">
+        
+    </head>
+    
+<body id="createAccount">
+<form method='POST' action='createAccount.php' class="login">
+    
                         <p class="form-input">
                             <input type="text" name="email"  value = "<?php print $email ?>" placeholder="Enter your Email" required/>	
         
 			<p class="form-input">
-                            <input type="text" name="username" value = "<?php print $userName ?> placeholder="Enter the User Name"" required/>	
+                            <input type="text" name="username" value = "<?php print $userName ?>" placeholder="Enter the User Name"" required/>	
 			<p class="form-input">
                             <input type="password" name="password" placeholder="password" required/>
 			<input type="submit" type="submit" value="Create Account"/>

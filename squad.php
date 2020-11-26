@@ -10,12 +10,17 @@ session_start();
  * and open the template in the editor.
  */
 
+
+
+
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
 }
+?>
 
 
+<?php
 //general
 $dataIsGood = true;
 $firstName = "";
@@ -28,6 +33,15 @@ $numRating = "";
 #if(isset($_POST['btnSubmit'])) {
 
 if(isset($_POST['Submit'])) {
+    /*
+    if($_SESSION["points"] < 1000) {
+        print("<p>You Don't Have Enough Points</p>");
+        
+        
+        exit;
+    }
+        
+     *  */
 
   
 if($dataIsGood){
@@ -135,6 +149,26 @@ if($dataIsGood){
     
     print($lastInsert);
     
+    $tblAtrributeQueryOne = "INSERT INTO tblPosition(pfkPlayerID,fldPosition) values(?,?)";
+    
+    $dataPosition = array($lastInsert, $position);
+    
+    if($thisDatabaseWriter->querySecurityOK($tblAtrributeQueryOne,0)){
+            $dataReady = $thisDatabaseWriter->sanitizeQuery($tblAtrributeQueryOne);
+            $thisDatabaseWriter->insert($dataReady, $dataPosition);
+            
+            
+            
+        }
+        
+    
+        
+      else{
+          print("<p>There was error Inserting Positions</p>");
+      }
+      
+      
+
     $tblAtrributeQuery = "INSERT INTO tblAtrributes (pfkPlayerID, fldPace, fldSkills, fldShooting, fldPassing, fldHeading, fldStrength) values(?,?,?,?,?,?,?)";
     //$tblAtrributeQuery = "INSERT INTO tblAtrributes (pfkPlayerID, fldPace, fldSkills, fldShooting, fldPassing, fldHeading, fldStrength) where pfkPlayerID = ?, fldPace = ?, fldSkills = ?, fldShooting = ?, fldPassing = ?, fldHeading = ?, fldStrength = ? ";
     //$thisDatabaseReader->testSecurityQuery($tblAtrributeQuery);
@@ -149,6 +183,8 @@ if($dataIsGood){
             
         }
         
+    
+        
       else{
           print("<p>There was error Inserting the values</p>");
       }
@@ -158,13 +194,11 @@ if($dataIsGood){
 }
 
 }
-
-
-      
+     
 ?>
 
-
-<form method='POST' action=''>
+<section class="form">
+<form method='POST' action='' class="squad">
     
                 <legend>Enter Your Player Info</legend>
 
@@ -219,7 +253,7 @@ if($dataIsGood){
                 
                 
   
-    <fieldset class ="listbox">
+                <p class="listbox">  
     <label for="position">Choose a Position</label>
 
     <select name="position" id="position" required>
@@ -233,14 +267,15 @@ if($dataIsGood){
   <option value="ST">Striker</option>
   
 </select>
-    
-    </fieldset>
+                </p>
+   
                 
                 
 <!-- Skills Section -->
+<fieldset>
                 <legend>Enter Your Player Attributes Info</legend>
 
-                 <p>
+                 <p class="padjust">
 
                     <label class ="required text-field" for="numPace">Pace</label>
                     <input autofocus
@@ -348,11 +383,13 @@ if($dataIsGood){
                            >
                 </p>
                 
-  
+</fieldset>
 
           <input type="submit" name = "Submit"/>
 
 </form>
+    
+</section>
 
 </body>
 </html>

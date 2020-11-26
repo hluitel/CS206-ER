@@ -37,8 +37,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             
             
             
-            
-        $test = $validateUser[0]['pmkUserID'];
+        if(is_array($validateUser)){
+            $test = $validateUser[0]['pmkUserID'];          
+        }    
         try{
             if(password_verify($passWord, $validateUser[0]['fldPassword'])) {
                 $_SESSION["username"] = $userName;
@@ -46,11 +47,83 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 $_SESSION["key"] = $test;
                 
                 $_SESSION["loggedin"] = true;
+                
+                $checkUserTwo = 'select * from tblUserRewards where pfkUserID = ?';
+
+
+                
+                #$thisDatabaseReader->testSecurityQuery($checkUser);
+
+                if($thisDatabaseReader->querySecurityOK($checkUserTwo)){
+                    $ready = $thisDatabaseReader->sanitizeQuery($checkUserTwo);
+                    $validateUserReward = $thisDatabaseReader->select($ready, array($test));
+                
+                
+                }
+                
+                
+                if(is_array($validateUserReward)) {
+                    $rewardTesting = $validateUserReward[0]['fldTime'];
+                    $rewardTesting = strtotime($rewardTesting);                   
+                }
+                
+                print($validateUserReward[0]['fldTime']);
+                print("<p>Time Recorded</p>");
+                print($rewardTesting);
+                
+                $timeNow = strtotime("now");
+                print("<p>Time Now</p>");
+                print($timeNow);
+                
+                
+                $diff = $timeNow - $rewardTesting;
+                print("<p>Differnce</p>");
+
+                print($diff);
+                
+                if($diff > 86400) {
+                    print("got here");
+                    $points = $validateUserReward[0]['fldPoints'] + 100;
+                    print("points");
+                    print($points);
+                    
+
+                    //$checkUserThree = 'UPDATE tblUserRewards(pfkUserID,fldPoints) values(?,?)';
+                     //$checkUserThree = "UPDATE tblUserRewards SET fldPoints = ? where pfkUserID = $test";
+                       $checkUserThree = "UPDATE tblUserRewards SET fldPoints = ?, fldTime =  current_timestamp where pfkUserID = ?";
+
+
+                    //$timeRecord = 
+                    
+                    $arrTwo = array($points,$test);
+                    
+                    $thisDatabaseReader->testSecurityQuery($checkUserThree,1,0,0,0,0);
+                    if($thisDatabaseWriter->querySecurityOK($checkUserThree,1,0,0,0,0)){
+                    $ready = $thisDatabaseWriter->sanitizeQuery($checkUserThree);
+                    $validateUserRewardOne = $thisDatabaseWriter->update($ready, $arrTwo);
+                
+                
+                }
+                
+                if(is_array($validateUserRewardOne)){
+                    //print($validateUserReward[0]['fldPoints']);
+                    $pointRecord = $validateUserReward[0]['fldPoints'];
+                    $_SESSION["points"] = $pointRecord;
+                    
+                }
+                
+                    
 
                     
+                    
+                }
+                
+                
+                
+                    
                 //print($_SESSION["username"]);
-                header("Location: index.php");
-                die;    
+                //header("Location: index.php");
+                //die;    
             }
             else{
                 print("<p>Incorrect Passoword</p>");
@@ -61,7 +134,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
             
            
-        } catch (Exception $ex) {
+        }catch(Exception $ex) {
              print("<p>Incorrect Passoword</p>");
             
 
@@ -90,7 +163,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 }
 ?>
 
-		<form method='POST' action=''>
+<form method='POST' action='' class="login">
+    <fieldset class="loginf">
 			<p class="form-input">
                             <input type="text" name="username" value = "<?php print($userName); ?>" placeholder="Enter the User Name" required/>	
 			<p class="form-input">
@@ -101,6 +175,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             
                             
 			<input type="submit" type="submit" value="LOGIN" class="btn-login"/>
+    </fieldset>
                 </form>
 </body>
 </html>

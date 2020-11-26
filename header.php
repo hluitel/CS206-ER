@@ -1,6 +1,17 @@
 <header id="topthepage">
-<h1>Welcome to FIFA 2020</h1>
-</header>
+    
+    <ul class='headerNav'>
+        <li><a href="index.php">Login</a></li><li><a href="logout.php">Logout</a></li>        
+      </ul>
+    
+    
+       <figure id="logo">
+           <img class="banner" src="img/header.jpg" alt="logo banner">
+           
+        
+        </figure> 
 
+
+</header>
 
 

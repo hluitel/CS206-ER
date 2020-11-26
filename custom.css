@@ -1,0 +1,377 @@
+header{
+    z-index: 100;
+    position: fixed;
+    width: 100%;
+    top: 8px;
+}
+
+.headerNav{
+    float: right;
+    padding-right: 1%;
+}
+.headerNav li{
+    display: inline-block;
+    padding-right: 11px;
+    border-right: 1px solid #E7E4DC;
+    padding-left: 11px;
+    color:white;
+}
+
+.banner{
+    height:55px;
+}
+
+
+#logo{
+    background-color: #56baed;
+    margin-top: -8px;
+    margin-left: -8px;
+    margin-right: -13px;
+    margin-bottom: 0px;
+    text-align: left;
+    padding-left: 40px
+}
+
+
+nav{
+    width: 80%;
+    margin-left: 5em;
+    margin-top: -.6em;
+    position: fixed;
+    top: 79px;
+    z-index: 100;
+    border-bottom: 1px solid black;
+
+}
+
+nav ul{
+    margin: -3px -10px 0px 0px;
+    padding: 18px 0px;
+    background-color: cadetblue;
+    list-style-type: none;
+    text-align: center;
+}
+
+ul li{
+    display: inline;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-right: 1px solid black;
+    
+}
+
+
+
+ul li:nth-child(7){
+    border-right: none; 
+}
+
+ul li a{
+    text-decoration: none;
+    color: black;
+}
+
+ul li a:hover{
+    text-decoration: none;
+    color: white;
+}
+
+
+/*
+nav ol {
+    margin: auto;
+    padding: 0.95em;
+    padding-top: 1.3em;
+    font-size: 1em;
+}
+
+nav a, nav a:visited {
+    color: #90D4ED;
+    text-decoration: none;
+}
+
+nav ol li:hover {
+    background-color: #137731;
+    padding-bottom: 0.75em;
+}
+
+nav ol li {
+    padding: 0.7em;
+    display: inline;
+    list-style-type: none;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 16pt;
+}
+
+
+nav ol li.active {
+    background-color: #6CCA80;
+    padding-bottom: 0.8em;
+}
+
+*/
+
+
+/* login */
+
+
+
+
+
+
+
+/* Add styles to the form container */
+.login{
+  margin-top: 8em;
+  border-radius: 10px 10px 10px 10px;
+  margin-left: 10em;
+  
+  
+  background: #fff;
+  width: 90%;
+  max-width:25em;
+  position:relative;
+  padding: 0em;
+  text-align: center;
+}
+
+
+#squad input[type=submit]  {
+  background-color: #56baed;
+  border: none;
+  color: white;
+  padding: 15px 80px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 13px;
+  border-radius: 5px 5px 5px 5px;
+  margin: 5px 20px 40px 20px;
+ 
+}
+
+
+#index input[type=text] ,#index input[type=password] {
+  background-color: #f6f6f6;
+  border: none;
+  color: #0d0d0d;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 5px;
+  width: 85%;
+  border: 2px solid #f6f6f6;
+  border-radius: 5px 5px 5px 5px;
+}
+
+
+
+#index input[type=text]:placeholder {
+  color: #cccccc;
+}
+
+
+
+
+#index{
+  background-image: url("./img/ronaldo.png");
+  background-repeat: no-repeat;
+  background-size: 50%; 
+  background-position: right;
+  background-color: #56baed;
+  background-position-y: 4em;
+ 
+  
+}
+
+.loginh{
+  background-color: #f6f6f6;
+  border-top: 1px solid #dce8f1;
+  padding: 25px;
+  text-align: center;
+}
+
+
+#createAccount{
+    background-color: #56baed;
+
+}
+
+#createAccount input[type=text], #createAccount input[type=password]{
+    padding: 0.9375em 0.9375em;
+}
+#createAccount .login{
+     margin-left: 25em;
+
+}
+
+#squad form{
+    margin-top: 9em;
+}
+
+.squad{
+    margin-top: 9em;
+}
+
+
+
+#squad input[type=text] {
+    box-sizing: border-box;
+    border: 2px solid #C2C2C2;
+    box-shadow: 3px 3px #183661;
+    border-radius: 3px;
+    padding: 1em;
+    outline: none;
+
+}
+
+#squad input[type=number] {
+    box-sizing: border-box;
+    border: 2px solid #C2C2C2;
+    box-shadow: 3px 3px #183661;
+    border-radius: 3px;
+    padding: 1em;
+    outline: none;
+
+}
+#squad legend{
+    color: white;
+    font-size: 1.3em;
+}
+
+
+#squad legend{
+    color: white;
+    font-size: 1.3em;
+}
+
+#squad fieldset{
+  /*! border: 4px ridge lightgrey; */
+    clear: both;
+    padding: 1em;
+    float: right;
+    margin-top: -20em;
+}
+
+
+.text-field{
+    display: block;
+    float: left;
+    margin: 0 0 1.2em;
+    padding-right: 0.5em;
+    padding-top: 0.75em;
+    text-align: right;
+    width: 7em;
+    color:white;
+}
+
+
+.listbox{
+    box-sizing: border-box;
+  
+    /*! box-shadow: 3px 3px #183661; */
+    border-radius: 3px;
+    padding: 1em;
+    outline: none;
+    color:white;
+
+
+}
+#position{
+   box-sizing: border-box;
+    border: 2px solid #C2C2C2;
+    box-shadow: 3px 3px #183661;
+    border-radius: 3px;
+    padding: 1em;
+    outline: none;
+
+}
+
+
+#squad{
+    background: url("./img/stadium.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+fieldset{
+    border:none;
+}
+
+
+/* PlayersCatalog*/
+.padjust{
+    margin-top: -.25em;
+}
+
+
+/* Players */
+
+#playersCatalog form{
+    margin-top: -4em;
+    
+}
+
+
+#playersCatalog form{
+    margin-top: 9em;
+    text-align: center;
+    
+        
+}
+
+#playersCatalog input[type=text]{
+     box-sizing: border-box;
+    border: 2px solid #C2C2C2;
+    box-shadow: 3px 3px #183661;
+    border-radius: 3px;
+    padding: 1em;
+    outline: none;
+    
+}
+
+#playersCatalog legend{
+    color: black;
+}
+
+.playersTbl {
+    margin-top:7em;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: normal;
+    border: none;
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 100%;
+    white-space: nowrap;
+    background-color: white;
+}
+
+.playersTbl td, .playersTbl th {
+    text-align: center;
+    padding: 8px;
+}
+
+.playersTbl td {
+    border-right: 1px solid #f8f8f8;
+    font-size: 12px;
+}
+
+.playersTbl thead th {
+    color: #ffffff;
+    background: #4FC3A1;
+}
+
+
+.playersTbl thead th:nth-child(odd) {
+    color: #ffffff;
+    background: #324960;
+}
+
+.playersTbl tr:nth-child(even) {
+    background: #F8F8F8;
+}

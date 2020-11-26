@@ -1,54 +1,50 @@
 <!-- ######################     Main Navigation   ########################## -->
 <nav>
-    <ol>
+    <ul>
         <?php
         // This sets a class for current page so you can style it differently
         
-        print '<li ';
-        if (PATH_PARTS['filename'] == 'index') {
-            print ' class="activePage" ';
+        
+        print '<li class="';
+        if ($PATH_PARTS['filename'] == "home") {
+            print ' activePage ';
         }
-        print '><a href="index.php">Home</a></li>';
+        print '">';
+        print '<a href="home.php">Home</a>';
+        print '</li>';
+
+        print '<li class="';
+        if ($PATH_PARTS['filename'] == "squad") {
+            print ' activePage ';
+        }
+        print '">';
+        print '<a href="squad.php">Squad Builder</a>';
+        print '</li>';
+        
+        print '<li class="';
+        if ($PATH_PARTS['filename'] == "playersCatalog") {
+            print ' activePage ';
+        }
+        print '">';
+        print '<a href="playersCatalog.php">Players Catalog</a>';
+        print '</li>';
+        
+        print '<li class="';
+        if ($PATH_PARTS['filename'] == "playerPack") {
+            print ' activePage ';
+        }
+        print '">';
+        print '<a href="playerPack.php">Player Pack</a>';
+        print '</li>';
+        
+
+
+        
+        
        
-        print '<li ';
-        if (PATH_PARTS['filename'] == 'squad') {
-            print ' class="activePage" ';
-        }
-        print '><a href="squad.php">Squad Builder</a></li>';
-       
-   
-        
-        print '<li ';
-        
-         print '<li ';
-        if (PATH_PARTS['filename'] == 'Login') {
-            print ' class="activePage" ';
-        }
-        print '><a href="login.php">Login</a></li>';
-       
-   
-        
-        print '<li ';
-        
-        if (PATH_PARTS['filename'] == 'playerPack') {
-            print ' class="activePage" ';
-        }
-        print '><a href="playerPack.php">Your Players</a></li>';
-        
-        print '<li ';
-        
-        
-         print '<li ';
-        
-        if (PATH_PARTS['filename'] == 'playersCatalog') {
-            print ' class="activePage" ';
-        }
-        print '><a href="playersCatalog.php">Players Catalog</a></li>';
-        
-        print '<li ';
         
         ?>
-    </ol>
+    </ul>
 </nav>
 <!-- #################### Ends Main Navigation    ########################## -->
 

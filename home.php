@@ -27,7 +27,7 @@ $playerInfo = "";
 
 
 if(isset($_POST['Submit'])) {
-    //print("<p>After Testing</p>");
+    print("<p>After Testing</p>");
     
 
   
@@ -56,8 +56,8 @@ if(isset($_POST['Submit'])) {
             if($thisDatabaseReader->querySecurityOK($tblQuery)){
             $readyTOGO = $thisDatabaseReader->sanitizeQuery($tblQuery);
             $playerInfo = $thisDatabaseReader->select($readyTOGO, array($Country));
-            //print(sizeof($playerInfo));
-            //print("<p>Got Name Empty</p>");
+            print(sizeof($playerInfo));
+            print("<p>Got Name Empty</p>");
 
             
 
@@ -89,8 +89,8 @@ if(isset($_POST['Submit'])) {
             if($thisDatabaseReader->querySecurityOK($tblQuery,1,1)){
             $readyTOGO = $thisDatabaseReader->sanitizeQuery($tblQuery);
             $playerInfo = $thisDatabaseReader->select($readyTOGO, $data);
-            //print(sizeof($playerInfo));
-            //print("<p>Got here</p>");
+            print(sizeof($playerInfo));
+            print("<p>Got here</p>");
 
 
             
@@ -98,58 +98,14 @@ if(isset($_POST['Submit'])) {
         }
         
         }
-        
-              
-        
-        print "<table class='playersTbl'>";
-        print '<tr class="tblrow">';
-         print '<th>Name</th>';
-               print '<th>Nationality</th>';
-                print '<th>Position</th>'; 
-                 print '<th>Ranking</th>'; 
-                  print '<th>Age</th>'; 
-                   print '<th>Club</th>'; 
-
-    print '</tr>';
-    
-    
-   
-    
-    if(is_array($playerInfo)) {
-        print(sizeof($playerInfo));
-        
-    
-    
-    foreach($playerInfo as $player) {
-         print '<tr>';
-            print '<td>' . $player['fldName'] . '</td>';
-            print '<td>' . $player['fldNationality'] . '</td>';
-            print '<td>' . $player['fldPosition'] . '</td>';
-            print '<td>' . $player['fldRanking'] . '</td>';
-            print '<td>' . $player['fldAge'] . '</td>';
-            print '<td>' . $player['fldClub'] . '</td>';
-            print '</tr>';
-    }
-    
-    
-    
-    }
-        
         
         
         else{
             print("<p class = 'mistake'>Please Enter Atleast one info</p>");
         }
         
-        
-        
-        
-        
-        
-        
     } else if($displayPlayer == "fantasy"){
         $tblQuery = 'select * from tblPlayers where pfkUserID = ?';
-        
         $arr = $_SESSION['key'];
 
          if($thisDatabaseReader->querySecurityOK($tblQuery)){
@@ -158,41 +114,11 @@ if(isset($_POST['Submit'])) {
             
             if(sizeof($playerInfo) == 0) {
                 print("<p>You Got No Players in Your Fantasy Team");
-                exit;
             }
    
         
          }
-         
-        
-          
-    print "<table class='playersTbl'>";
-    print '<tr class="tblrow">';
-         print '<th>First Name</th>';
-               print '<th>Last Name</th>';
-                print '<th>Rating</th>';           
 
-    print '</tr>';
-    
-    
-   
-    
-    if(is_array($playerInfo)) {
-        print(sizeof($playerInfo));
-        
-    
-    
-    foreach($playerInfo as $player) {
-         print '<tr>';
-            print '<td>' . $player['fldFirstName'] . '</td>';
-            print '<td>' . $player['fldLastName'] . '</td>';
-            print '<td>' . $player['fldRating'] . '</td>';
-            print '</tr>';
-    }
-    
-    
-    
-    }
         
         
         
@@ -204,6 +130,39 @@ if(isset($_POST['Submit'])) {
         
     }
     
+    ?>
+
+<table>
+    <tr>
+         <th>Name</th>
+                <th>Nationality</th>
+                <th>Position</th>
+                <th>Ranking</th>
+                <th>Age</th>  
+                <th>Club</th>               
+
+    </tr>
+    
+    
+    <?php
+    
+    if(is_array($playerInfo)) {
+        
+    
+    
+    foreach($playerInfo as $player) {
+         print '<tr>';
+            print '<td>' . $player['fldName'] . '</td>';
+            print '<td>' . $player['fldNationality'] . '</td>';
+            print '<td>' . $player['fldPosition'] . '</td>';
+            print '<td>' . $player['fldRanking'] . '</td>';
+            print '<td>' . $player['fldAge'] . '</td>';
+            print '<td>' . $player['fldClub'] . '</td>';
+
+           print '</tr>';
+    }
+    
+    }
     
 }
     
