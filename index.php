@@ -51,7 +51,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             
             
         if(is_array($validateUser)){
-            $test = $validateUser[0]['pmkUserID'];          
+            $test = $validateUser[0]['pmkUserID'];  
+            $emailStore = $validateUser[0]['fldEmail'];
+            $DateJoined = $validateUser[0]['fldDateJoin'];
         }    
         try{
             if(password_verify($passWord, $validateUser[0]['fldPassword'])) {
@@ -60,6 +62,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 $_SESSION["key"] = $test;
                 
                 $_SESSION["loggedin"] = true;
+                $_SESSION["email"] = $emailStore;
+                $_SESSION["dateJoined"] = $DateJoined;
                 
                 $checkUserTwo = 'select * from tblUserRewards where pfkUserID = ?';
 
@@ -93,6 +97,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 print("<p>Differnce</p>");
 
                 print($diff);
+                  $pointRecord = $validateUserReward[0]['fldPoints'];
+                  $_SESSION["points"] = $pointRecord;
+                    
                 
                 if($diff > 86400) {
                     print("got here");
@@ -202,7 +209,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         <h4 class="loginh">Don't Have An Account?</h4><a class="logina" href="createAccount.php">Create Account</a>
     
     
-                            
+     
+             
     </fieldset>
                 </form>
 </body>
