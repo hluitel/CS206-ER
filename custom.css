@@ -429,7 +429,7 @@ fieldset{
     width: 20%;
     background-color: #226089;
     color: white;
-    margin-top: 7em;
+    margin-top: 3em;
 }
 .sidebar h2{
 border-bottom: 2px solid orangered;
@@ -446,9 +446,35 @@ box-shadow: 3px 3px green;
     margin-left: -4em
 }
 
+
+
+.sidebar2 {
+    float: right;
+    margin-right: .1%;
+    width: 20%;
+    background-color: #226089;
+    color: white;
+    margin-top: -42.8em;
+}
+.sidebar2 h2{
+border-bottom: 2px solid orangered;
+padding: .5em;
+font-size: 1.4em;
+background: #113f67;
+box-shadow: 3px 3px green;
+    margin-left: -2em;
+}
+
+.sidebar2 img{
+    width: 200px;
+    height: 200px;
+    margin-left: -4em
+}
+
+
 #home nav{
-    width: 70%;
-margin-left: 16em;
+    width: 55%;
+margin-left: 17em;
 margin-top: -.6em;
 position: fixed;
 top: 79px;
@@ -507,3 +533,34 @@ header li a:hover{
     color:black;
     text-transform: capitalize;
 }
+
+
+
+.tblHome td{
+    color:white;
+    font-size: 1.5em;
+    padding-right:.5em;
+    border-bottom:1px solid white;
+    border-right: 1px solid white;
+    
+}
+
+
+.tblHome{
+    margin-left: 2em;
+    border:1px solid whitesmoke;
+}
+
+.homeh4{
+    color: white;
+    text-transform: capitalize;
+    font-size: 1.2em;
+    margin-left: 7em;
+    text-decoration: underline;
+    
+}
+
+
+
+
+

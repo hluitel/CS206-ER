@@ -6,7 +6,7 @@ include 'top.php';
 <main class='homemain'>
     <section class='homesection'>
         
-        <h4>Create Players | Search Players | Play The Game</h4>
+        <h4 class="homeh4">Greatest Player of All Time</h4>
         
         <table class='tblHome'>
             <thead>
@@ -99,27 +99,34 @@ include 'top.php';
                 </aside>
     
     
+                <aside class="sidebar2">
+                    <ul>
+                        
+                        <li class="score">
+                            <h2>Ronaldo</h2>
+                            <figure>
+                                <img class='ronaldo' src="./img/ronaldo-jumping.jpg">
+                                
+                            </figure>
+
+                        </li>
+                        
+                        <li class="score">
+                            <h2>Messi</h2>
+                            <figure>
+                                <img class='ronaldo' src="./img/messi.jpg">
+                                
+                            </figure>
+
+                         
+                        </li>
+
+                       
+
+                    </ul>
+                </aside>
+    
+    
+    
     
 </main>
-
-
-
-        <tr>
-            <th>UserName</th>
-             <td><?php print($_SESSION['username']);?></td>
-        </tr>
-        <tr>
-            <th>Email</th>
-            <td><?php print($_SESSION['email']);?></td>
-
-        </tr>
-        <tr>
-            <th>Points</th>
-            <td><?php print($pointsRec);?></td>
-
-        </tr>
-        <tr>
-            <th>Date Joined</th>
-            <td><?php $_SESSION['dateJoined'] ?> </td>
-
-        </tr>

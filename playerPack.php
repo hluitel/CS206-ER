@@ -7,13 +7,10 @@ include 'top.php';
  * and open the template in the editor.
  */
 
-echo file_get_contents("./widget_19270/index.html");
 
 
-?>
 
-        <a href="./widget_19270/index.html">k</a>
-    
+?>    
     
 
 
