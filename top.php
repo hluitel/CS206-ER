@@ -8,9 +8,9 @@
         <meta name="author" content="Hari Luitel">
         <meta name="description" content="wonderful pictures, gallary, nature,burlington pictures, vermont, a new view, shutter, cool pictures,">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="./css/custom.css?version=<?php print time(); ?>" type="text/css">
-        <link rel="stylesheet" href="./css/tablet.css?version=<?php print time(); ?>" type="text/css">
-        <link rel="stylesheet" href="./css/mobile.css?version=<?php print time(); ?>" type="text/css">
+        <link rel="stylesheet" href="css/custom.css?version=<?php print time(); ?>" type="text/css">
+        <link rel="stylesheet" href="css/tablet.css?version=<?php print time(); ?>" type="text/css">
+        <link rel="stylesheet" href="css/mobile.css?version=<?php print time(); ?>" type="text/css">
 
 
         
