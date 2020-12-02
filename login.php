@@ -1,8 +1,21 @@
 <?php
-include 'top.php';
+        print PHP_EOL . '<!--include Libraries-->' . PHP_EOL;  
+     print '<!-- begin including libraries -->';     
+        include 'lib/constants.php';
+        include LIB_PATH . '/Connect-With-Database.php';
+        print '<!-- libraries complete-->';
+
+    
+    
+session_start();
+
+if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+    header("location: home.php");
+    exit;
+      
+}
+
 include 'functions.php';
-
-
 
 $userName = "";
 $passWord = "";
@@ -38,7 +51,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             
             
         if(is_array($validateUser)){
-            $test = $validateUser[0]['pmkUserID'];          
+            $test = $validateUser[0]['pmkUserID'];  
+            $emailStore = $validateUser[0]['fldEmail'];
+            $DateJoined = $validateUser[0]['fldDateJoin'];
         }    
         try{
             if(password_verify($passWord, $validateUser[0]['fldPassword'])) {
@@ -47,6 +62,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 $_SESSION["key"] = $test;
                 
                 $_SESSION["loggedin"] = true;
+                $_SESSION["email"] = $emailStore;
+                $_SESSION["dateJoined"] = $DateJoined;
                 
                 $checkUserTwo = 'select * from tblUserRewards where pfkUserID = ?';
 
@@ -80,12 +97,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 print("<p>Differnce</p>");
 
                 print($diff);
+                  $pointRecord = $validateUserReward[0]['fldPoints'];
+                  $_SESSION["points"] = $pointRecord;
+                    
                 
                 if($diff > 86400) {
-                    print("got here");
+                    //print("got here");
                     $points = $validateUserReward[0]['fldPoints'] + 100;
-                    print("points");
-                    print($points);
+                    //print("points");
+                    //print($points);
                     
 
                     //$checkUserThree = 'UPDATE tblUserRewards(pfkUserID,fldPoints) values(?,?)';
@@ -122,8 +142,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 
                     
                 //print($_SESSION["username"]);
-                //header("Location: index.php");
-                //die;    
+                header("Location: home.php");
+                die;    
             }
             else{
                 print("<p>Incorrect Passoword</p>");
@@ -162,20 +182,37 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 }
 ?>
+<!DOCTYPE html>
+<html lang="en">
+    <head>  
+        <title>A New View PhotoGraphy</title>
 
-<form method='POST' action='' class="login">
+        <meta charset="utf-8">
+        <meta name="author" content="Hari Luitel">
+        <meta name="description" content="wonderful pictures, gallary, nature,burlington pictures, vermont, a new view, shutter, cool pictures,">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./custom.css" type="text/css" media="screen">
+        
+    </head>
+    
+<body id="index">
+    <form method='POST' action='login.php' class="login">
     <fieldset class="loginf">
 			<p class="form-input">
                             <input type="text" name="username" value = "<?php print($userName); ?>" placeholder="Enter the User Name" required/>	
 			<p class="form-input">
                             <input type="password" name="password" placeholder="password" required/>
                             
-                        <h4>Don't Have An Account?</h4><a href="createAccount.php">Create Account</a>
-                            
-                            
-                            
-			<input type="submit" type="submit" value="LOGIN" class="btn-login"/>
+                        <input type="submit" value="LOGIN" class="btn-login"/>
+
+                     
+                        <h4 class="loginh">Don't Have An Account?</h4><a class="logina" href="createAccount.php">Create Account</a>
+    
+    
+     
+             
     </fieldset>
                 </form>
 </body>
 </html>
+

@@ -183,10 +183,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             <input type="text" name="email"  value = "<?php print $email ?>" placeholder="Enter your Email" required/>	
         
 			<p class="form-input">
-                            <input type="text" name="username" value = "<?php print $userName ?>" placeholder="Enter the User Name"" required/>	
+                            <input type="text" name="username" value = "<?php print $userName ?>" placeholder="Enter the User Name" required/>	
 			<p class="form-input">
                             <input type="password" name="password" placeholder="password" required/>
-			<input type="submit" type="submit" value="Create Account"/>
+			<input type="submit" value="Create Account"/>
                 </form>
 </body>
 </html>

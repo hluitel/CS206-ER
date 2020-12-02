@@ -1,0 +1,247 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Dec 1, 2020, 8:47:04 PM
+    Author     : haril
+*/
+
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: portrait) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+      
+      
+       header{
+    width: 100%;
+}
+
+.headerTbl{
+    margin-top: 5em;
+}
+
+.headerNav li{
+    color:white;
+}
+
+.banner{
+    height:55px;
+}
+
+
+#logo{
+    background-color: blue;
+    text-align: left;
+    width: 100%;
+}
+
+
+nav{
+    margin-top:3em;
+    width: 100%;
+    border-bottom: 1px solid black;
+    display: initial;
+   
+}
+
+nav ul{
+    display: block;
+    background-color: cadetblue;
+    list-style-type: none;
+    text-align: center;
+}
+
+ul li{
+    display: block;
+    
+}
+
+
+
+ul li:nth-child(7){
+    border-right: none; 
+}
+
+ul li a{
+    text-decoration: none;
+    color: black;
+}
+
+ul li a:hover{
+    text-decoration: none;
+    color: white;
+}
+
+
+/*
+nav ol {
+    margin: auto;
+    padding: 0.95em;
+    padding-top: 1.3em;
+    font-size: 1em;
+}
+
+nav a, nav a:visited {
+    color: #90D4ED;
+    text-decoration: none;
+}
+
+nav ol li:hover {
+    background-color: #137731;
+    padding-bottom: 0.75em;
+}
+
+nav ol li {
+    padding: 0.7em;
+    display: inline;
+    list-style-type: none;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 16pt;
+}
+
+
+nav ol li.active {
+    background-color: #6CCA80;
+    padding-bottom: 0.8em;
+}
+
+*/
+
+
+/* login */
+
+    
+
+    #home{
+        display: block;
+        
+    }
+    
+    .homemain{
+        width: 100%;
+        display: block;
+        margin-top:5em;
+    }
+    .sidebar2{
+        display: none;
+        margin:none;
+        
+    }
+    .sidebar{
+        display: none;
+    }
+
+    .tblHome{
+        width: 100%;
+        margin-left:-2em;
+        
+    }
+    
+    #squad{
+        display: block;
+         background-color: cadetblue;
+    }
+    
+    #squad .listbox{
+        margin-bottom:-2em;
+       
+    }
+    
+    #position {
+   
+    outline: none;
+    margin-bottom: 2em;
+    }
+    
+    
+    #squad form{
+        display: block;
+        margin-top:10em;
+        float: none;
+    }
+    
+    #squad fieldset {
+    border: 4px ridge lightgrey;
+    float: none;
+        margin: none;
+    }
+    
+    #home nav{
+          width: 100%;
+            margin-top: 1em;
+            margin-left:-1.8em;
+        
+    }
+        #squad nav{
+            width: 100%;
+            margin-top: 1em;
+            margin-left:-1.8em;
+        }
+        
+    #playersCatalog form{
+        margin-top:5em;
+    }
+    
+    #playersCatalog legend{
+        margin-top: 4em;
+    }
+    
+    #playersCatalog nav{
+        margin-left: -1.5em;
+    }
+    
+     #playersCatalog table {
+    border: 0;
+  }
+
+  #playersCatalog table caption {
+    font-size: 1.3em;
+  }
+  
+  #playersCatalog table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  
+  #playersCatalog table tr {
+    display: block;
+    margin-bottom: .625em;
+    border-bottom: 2px solid black;
+  }
+  
+  #playersCatalog table td {
+    display: block;
+    font-size: .8em;
+    text-align: center;
+    
+  }
+  
+  #playersCatalog table td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  #playersCatalog table td:last-child {
+    border-bottom: 0;
+  }
+  
+  #playerPack form{
+      margin-top:15em;
+      
+  }
+    
+   
+    
+
+}

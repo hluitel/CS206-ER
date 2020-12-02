@@ -7,7 +7,7 @@
  */
 include 'top.php';
 include 'functions.php';
-session_start();
+//session_start();
 
 
 /**
@@ -37,8 +37,10 @@ if(isset($_POST['Submit'])) {
         $Country = getPostData("txtSortNationality");
         $displayPlayer = getPostData("displayPlayer");
         
+        
+        
         if($displayPlayer != 'fantasy' || $displayPlayer != 'global'){
-            print '<p class = "mistake"> Please Select Atleast One Option for Displaying Players </p>';
+            //print '<p class = "mistake"> Please Select Atleast One Option for Displaying Players </p>';
             $dataIsGood = false;
         }
         
@@ -116,7 +118,7 @@ if(isset($_POST['Submit'])) {
    
     
     if(is_array($playerInfo)) {
-        print(sizeof($playerInfo));
+        #print(sizeof($playerInfo));
         
     
     
@@ -133,6 +135,7 @@ if(isset($_POST['Submit'])) {
     
     
     
+    
     }
         
         
@@ -140,6 +143,12 @@ if(isset($_POST['Submit'])) {
         else{
             print("<p class = 'mistake'>Please Enter Atleast one info</p>");
         }
+        
+        
+        
+        
+         print '</table>';
+    
         
         
         
@@ -178,7 +187,7 @@ if(isset($_POST['Submit'])) {
    
     
     if(is_array($playerInfo)) {
-        print(sizeof($playerInfo));
+        //print(sizeof($playerInfo));
         
     
     
@@ -193,6 +202,12 @@ if(isset($_POST['Submit'])) {
     
     
     }
+    
+    print '</table>';
+    
+    
+    
+    
         
         
         
@@ -210,11 +225,10 @@ if(isset($_POST['Submit'])) {
     ?>
     
     
-</table>
     
 
 
-   		<form method='POST' action=''>
+<form method='POST' action='playersCatalog.php'>
                      <fieldset>
                             <legend>Display Which Players: Your Fantasy Team Players or Global Players</legend>
                         <p class="radio">
@@ -233,7 +247,7 @@ if(isset($_POST['Submit'])) {
                            
                         </p>
                         <p>
-                            <input type="submit" name = "Submit"/>
+                            <input type="submit" name = "Submit" value="Submit"/>
                         </p>
  </form>
 

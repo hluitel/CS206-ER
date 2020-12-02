@@ -102,10 +102,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     
                 
                 if($diff > 86400) {
-                    print("got here");
+                    //print("got here");
                     $points = $validateUserReward[0]['fldPoints'] + 100;
-                    print("points");
-                    print($points);
+                    //print("points");
+                    //print($points);
                     
 
                     //$checkUserThree = 'UPDATE tblUserRewards(pfkUserID,fldPoints) values(?,?)';
@@ -196,14 +196,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </head>
     
 <body id="index">
-<form method='POST' action='' class="login">
+    <form method='POST' action='index.php' class="login">
     <fieldset class="loginf">
 			<p class="form-input">
                             <input type="text" name="username" value = "<?php print($userName); ?>" placeholder="Enter the User Name" required/>	
 			<p class="form-input">
                             <input type="password" name="password" placeholder="password" required/>
                             
-                        <input type="submit" type="submit" value="LOGIN" class="btn-login"/>
+                        <input type="submit" value="LOGIN" class="btn-login"/>
 
                      
                         <h4 class="loginh">Don't Have An Account?</h4><a class="logina" href="createAccount.php">Create Account</a>

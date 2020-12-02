@@ -12,19 +12,19 @@ include 'top.php';
             <thead>
                 <tr>
                     
-                                  <th> <img src='./img/ronaldowall.jpg' class='small'</th>
+                    <th><img src='./img/ronaldowall.jpg' class='small' alt="" /></th>
                   
                     
                    
-                    <th> <img src='./img/messi.jpg' class='small'</th>
+                                  <th><img src='./img/messi.jpg' class='small' alt="" /> </th>
                 </tr>
             </thead>
             
             
             <tr>
-                <td>Cristiano Ronaldo</td>
+                <td>Cristiano Ronaldo </td>
               
-               <td>Lionel Messi</td>
+               <td>Lionel Messi </td>
 
                     
                 
@@ -77,7 +77,7 @@ include 'top.php';
                         <li class="score">
                             <h2>Ronaldo</h2>
                             <figure>
-                                <img class='ronaldo' src="./img/ronaldo-jumping.jpg">
+                                <img class='ronaldo' src="./img/ronaldo-jumping.jpg" alt="" />
                                 
                             </figure>
 
@@ -86,7 +86,7 @@ include 'top.php';
                         <li class="score">
                             <h2>Messi</h2>
                             <figure>
-                                <img class='ronaldo' src="./img/messi.jpg">
+                                <img class='ronaldo' src="./img/messi.jpg" alt="" />
                                 
                             </figure>
 
@@ -105,7 +105,7 @@ include 'top.php';
                         <li class="score">
                             <h2>Ronaldo</h2>
                             <figure>
-                                <img class='ronaldo' src="./img/ronaldo-jumping.jpg">
+                                <img class='ronaldo' src="./img/ronaldobackwall.jpg" alt="" />
                                 
                             </figure>
 
@@ -114,7 +114,7 @@ include 'top.php';
                         <li class="score">
                             <h2>Messi</h2>
                             <figure>
-                                <img class='ronaldo' src="./img/messi.jpg">
+                                <img class='ronaldo' src="./img/messi-wall.jpg" alt="" />
                                 
                             </figure>
 

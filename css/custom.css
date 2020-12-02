@@ -155,6 +155,39 @@ nav ol li.active {
  
 }
 
+#index input[type=submit], #createAccount input[type=submit]  {
+  background-color: #56baed;
+  border: none;
+  color: white;
+  padding: 15px 80px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 13px;
+  border-radius: 5px 5px 5px 5px;
+  margin: 5px 20px 40px 20px;
+ 
+}
+
+
+
+
+#createAccount input[type=text] ,#createAccount input[type=password] {
+  background-color: #f6f6f6;
+  border: none;
+  color: #0d0d0d;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 5px;
+  width: 85%;
+  border: 2px solid #f6f6f6;
+  border-radius: 5px 5px 5px 5px;
+}
+
 
 #index input[type=text] ,#index input[type=password] {
   background-color: #f6f6f6;
@@ -296,7 +329,7 @@ nav ol li.active {
 
 
 #squad{
-    background: url("./img/stadium.jpg");
+    background: url("../img/stadium.jpg");
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -315,21 +348,16 @@ fieldset{
 
 /* Players */
 
-#playersCatalog form{
-    margin-top: -4em;
-    
-}
-
 
 #playersCatalog form{
-    margin-top: 9em;
+    margin-top: 7em;
     text-align: center;
     
         
 }
 
 #playersCatalog input[type=text]{
-     box-sizing: border-box;
+    box-sizing: border-box;
     border: 2px solid #C2C2C2;
     box-shadow: 3px 3px #183661;
     border-radius: 3px;
@@ -559,6 +587,123 @@ header li a:hover{
     text-decoration: underline;
     
 }
+
+#playersCatalog{
+    background-color: cadetblue;
+    color: white;
+    font-size:1.3em;
+    
+    
+}
+
+#playersCatalog table{
+    color:black;
+}
+
+
+#playersCatalog table{
+    color:black;
+}
+
+#playersCatalog tr:hover{
+  color:darkcyan;
+  border:1px solid;
+}
+
+
+#squad p{
+    color:white;
+}
+
+#playerPack form{
+    margin-top:7em;
+}
+
+#playerPack{
+    background: cadetblue;
+}
+
+#playerPack form{
+    margin-top:7em;
+}
+
+#playerPack .listbox2{
+    color:blue;
+    box-sizing: border-box;
+  
+    /*! box-shadow: 3px 3px #183661; */
+    border-radius: 3px;
+    padding: 1em;
+    outline: none;
+    color:white;
+    font-size:1.3em;
+    
+    
+}
+
+#player{
+    box-sizing: border-box;
+border: 2px solid #C2C2C2;
+box-shadow: 3px 3px #183661;
+border-radius: 3px;
+padding: 1em;
+outline: none;
+}
+
+
+
+#playerPack h4{
+  color: green;
+  font-size: 1.3em;
+}
+
+.lost{
+    color: red;
+}
+
+.tblPlayerPack{
+  color:white;
+  font-size:1.3em;
+
+
+}
+
+.tblPlayerPack td{
+  border:2px solid white;
+  padding:.5em;
+  background-color: lightsteelblue;
+}
+
+.tblPlayerPack th{
+  border:2px solid white;
+}
+
+
+.tblPlayerPack tr th {
+    color: #ffffff;
+    background: #4FC3A1;
+}
+
+
+.tblPlayerPack tr th:nth-child(odd) {
+    color: #ffffff;
+    background: #324960;
+}
+
+
+
+#playerPack .tblPlayerPack{
+  float:right;
+  margin-top:-10em;
+
+}
+
+#playersCatalog input[type=submit], #playerPack input[type=submit]{
+    padding: .5em;
+    
+}
+
+
 
 
 

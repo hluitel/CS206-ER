@@ -133,7 +133,7 @@ if($dataIsGood){
     
     $tblPlayerQuery = "INSERT INTO tblPlayers(pfkUserID, fldFirstName, fldLastName, fldRating) values(?,?,?,?)";
  
-    $thisDatabaseReader->testSecurityQuery($tblPlayerQuery,0);
+    //$thisDatabaseReader->testSecurityQuery($tblPlayerQuery,0);
     if($thisDatabaseWriter->querySecurityOK($tblPlayerQuery,0)){
             $readyTOGO = $thisDatabaseWriter->sanitizeQuery($tblPlayerQuery);
             $thisDatabaseWriter->insert($readyTOGO, $data);
@@ -180,7 +180,18 @@ if($dataIsGood){
             
             print("<p>Congratulations, You suceesfully Created a Player</p>");
             
-            
+            $checkUserThree = "UPDATE tblUserRewards SET fldPoints = ? where pfkUserID = ?";
+
+
+                    //$timeRecord = 
+                    $fldPoints = ($_SESSION['points'] - 1000);
+                    $arrTwo = array($fldPoints,$_SESSION['key']);
+                    
+                    //$thisDatabaseReader->testSecurityQuery($checkUserThree,1,0,0,0,0);
+                    if($thisDatabaseWriter->querySecurityOK($checkUserThree,1,0,0,0,0)){
+                    $ready = $thisDatabaseWriter->sanitizeQuery($checkUserThree);
+                    $validateUserRewardOne = $thisDatabaseWriter->update($ready, $arrTwo);
+                    }
         }
         
     
@@ -198,7 +209,7 @@ if($dataIsGood){
 ?>
 
 <section class="form">
-<form method='POST' action='' class="squad">
+    <form method='POST' action = "squad.php" class="squad">
     
                 <legend>Enter Your Player Info</legend>
 
