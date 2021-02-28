@@ -14,6 +14,7 @@ p.loadURDF("plane.urdf")
 robot = p.loadURDF("body.urdf")
 p.loadSDF("world.sdf")
 x = numpy.pi
+Vec_val = numpy.linspace(-x, x, 1000)
 pyrosim.Prepare_To_Simulate("body.urdf")
 backLegSensorValues = numpy.zeros(10000)
 frontLegSensorValues = numpy.zeros(10000)
@@ -26,16 +27,16 @@ for i in range(1000):
   bodyIndex = robot,
   jointName = "Torso_BLeg",
   controlMode = p.POSITION_CONTROL,
-  targetPosition = -x/4.0,
+  targetPosition = random.uniform(-x/2,x/2),
 
-  maxForce = 500)
+  maxForce = 30)
 
   pyrosim.Set_Motor_For_Joint(
   bodyIndex = robot,
   jointName = "Torso_FLeg",
   controlMode = p.POSITION_CONTROL,
-  targetPosition = x/4.0,
-  maxForce = 500)
+  targetPosition = random.uniform(-x/2,x/2),
+  maxForce = 30)
   time.sleep(1/60)
 
 print(backLegSensorValues)
