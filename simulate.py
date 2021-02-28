@@ -14,7 +14,29 @@ p.loadURDF("plane.urdf")
 robot = p.loadURDF("body.urdf")
 p.loadSDF("world.sdf")
 x = numpy.pi
-Vec_val = numpy.linspace(-x, x, 1000)
+Vec_val = numpy.linspace(-x/4, x/4, 1000)
+
+#backleg information 
+bAmplitude = x/4
+bFrequency = 10
+bPhaseOffset = 0
+bTargetAngle = numpy.zeros(1000)
+
+#frontLeg Information 
+fAmplitude = x/4
+fFrequency = 10 
+fPhaseOffset = 0
+fTargetAngle = numpy.zeros(1000)
+
+
+for k in range(1000):
+  bTargetAngle[k] = bAmplitude * numpy.sin(bFrequency * Vec_val[k] +bPhaseOffset)
+  fTargetAngle[k] = fAmplitude * numpy.sin(fFrequency * Vec_val[k] +fPhaseOffset)
+
+
+
+
+
 pyrosim.Prepare_To_Simulate("body.urdf")
 backLegSensorValues = numpy.zeros(10000)
 frontLegSensorValues = numpy.zeros(10000)
@@ -27,7 +49,7 @@ for i in range(1000):
   bodyIndex = robot,
   jointName = "Torso_BLeg",
   controlMode = p.POSITION_CONTROL,
-  targetPosition = random.uniform(-x/2,x/2),
+  targetPosition = bTargetAngle[i],
 
   maxForce = 30)
 
@@ -35,15 +57,17 @@ for i in range(1000):
   bodyIndex = robot,
   jointName = "Torso_FLeg",
   controlMode = p.POSITION_CONTROL,
-  targetPosition = random.uniform(-x/2,x/2),
+  targetPosition = fTargetAngle[i],
   maxForce = 30)
   time.sleep(1/60)
 
 print(backLegSensorValues)
+#saving Senors information
 numpy.save('temp_data',backLegSensorValues)
 numpy.save('frontLegSensorValues',frontLegSensorValues)
 
-
-
+#saving Motors informatiom
+np.save('data/bTargetAngle.npy', bTargetAngle)
+np.save('data/fTargetAngle.npy', fTargetAngle)
 
 
