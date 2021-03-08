@@ -4,29 +4,30 @@ import pyrosim.pyrosim as pyrosim
 import time
 import numpy
 import random
+import constants as c 
 
 physicsClient = p.connect(p.GUI)
 p.setAdditionalSearchPath(pybullet_data.getDataPath())
 p.disconnect
 
-p.setGravity(0,0,-9.8)
+p.setGravity(0,0,c.GRAVITY)
 p.loadURDF("plane.urdf")
 robot = p.loadURDF("body.urdf")
 p.loadSDF("world.sdf")
 x = numpy.pi
-Vec_val = numpy.linspace(-x/4, x/4, 1000)
+Vec_val = numpy.linspace(-x, x, c.VECTOR_SIZE)
 
 #backleg information 
 bAmplitude = x/4
 bFrequency = 10
 bPhaseOffset = 0
-bTargetAngle = numpy.zeros(1000)
+bTargetAngle = numpy.zeros(c.VECTOR_SIZE)
 
 #frontLeg Information 
-fAmplitude = x/4
-fFrequency = 10 
+fAmplitude = x/5
+fFrequency = 10
 fPhaseOffset = 0
-fTargetAngle = numpy.zeros(1000)
+fTargetAngle = numpy.zeros(c.VECTOR_SIZE)
 
 
 for k in range(1000):
@@ -51,14 +52,14 @@ for i in range(1000):
   controlMode = p.POSITION_CONTROL,
   targetPosition = bTargetAngle[i],
 
-  maxForce = 30)
+  maxForce = c.MAXFORCE)
 
   pyrosim.Set_Motor_For_Joint(
   bodyIndex = robot,
   jointName = "Torso_FLeg",
   controlMode = p.POSITION_CONTROL,
   targetPosition = fTargetAngle[i],
-  maxForce = 30)
+  maxForce = c.MAXFORCE)
   time.sleep(1/60)
 
 print(backLegSensorValues)
@@ -67,7 +68,7 @@ numpy.save('temp_data',backLegSensorValues)
 numpy.save('frontLegSensorValues',frontLegSensorValues)
 
 #saving Motors informatiom
-np.save('data/bTargetAngle.npy', bTargetAngle)
-np.save('data/fTargetAngle.npy', fTargetAngle)
+numpy.save('data/bTargetAngle.npy', bTargetAngle)
+numpy.save('data/fTargetAngle.npy', fTargetAngle)
 
 
