@@ -8,11 +8,15 @@ import constants as c
 from  sensor import  SENSOR
 from motor import MOTOR
 
+from pyrosim.neuralNetwork import NEURAL_NETWORK
+
 
 class ROBOT:
     def __init__(self):
         self.robot = p.loadURDF("body.urdf")
         pyrosim.Prepare_To_Simulate("body.urdf")
+
+        self.nn = NEURAL_NETWORK("brain.nndf")
         self.Prepare_To_Sense()
         self.Prepare_To_Act()
 
@@ -33,3 +37,10 @@ class ROBOT:
     def Act(self, t):
         for i in self.motors:
             self.motors[i].Set_Value(self.robot, t)
+    def Think(self):
+        self.nn.Update()
+        self.nn.Print()
+             
+
+
+

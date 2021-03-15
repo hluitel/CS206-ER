@@ -16,7 +16,8 @@ class SENSOR:
     self.values[t] = pyrosim.Get_Touch_Sensor_Value_For_Link(self.linkName)
 
     if t == 1000:
-      print(self.values)
+      #print(self.values)
+      pass
   
 
   def Save_Values(self):
