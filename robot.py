@@ -17,6 +17,7 @@ class ROBOT:
         pyrosim.Prepare_To_Simulate("body.urdf")
 
         self.nn = NEURAL_NETWORK("brain.nndf")
+       
         self.Prepare_To_Sense()
         self.Prepare_To_Act()
 
