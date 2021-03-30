@@ -2,7 +2,10 @@ import os
 from hillclimber import HILL_CLIMBER
 
 
-hc = HILL_CLIMBER()
+hillclimber = HILL_CLIMBER()
+hillclimber.Evolve() 
+hillclimber.Show_Best() 
+
 
 # 
 # for i in range(5):

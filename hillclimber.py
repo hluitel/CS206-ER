@@ -1,6 +1,6 @@
 from solution import SOLUTION 
 import constants as c 
-
+import copy 
 
 class HILL_CLIMBER:
    def __init__(self):
@@ -15,19 +15,30 @@ class HILL_CLIMBER:
    def Evolve_For_One_Generation(self):
       self.Spawn()
       self.Mutate()
-      self.child.Evaluate()
+      self.child.Evaluate("DIRECT")
+      self.Print()
       self.Select() 
       
       
+      
    def Spawn(self):
-      pass
+      self.child = copy.deepcopy(self.parent)
       
    def Mutate(self):
-      pass
+      self.child.Mutate()
 
    def Select(self):
-      pass          
-      
-      
+      if self.child.fitness < self.parent.fitness:
+         self.parent = self.child
+                
+   def Print(self):
+        print("\n" +  "Parent: " + str(self.parent.fitness) + "  Child  " + str(self.child.fitness))
+        
+        #print("\n( Parent: " + str(self.parent.fitness) + ", Child: " + str(self.child.fitness) + " )")
+     
+     
+   def Show_Best(self):
+      self.parent.Evaluate("GUI") 
+
       
       
